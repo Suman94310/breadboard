@@ -5,6 +5,7 @@ export default class Led{
         this.simulation = simulation;
         this.selected = 0;
         this.input = null;
+        this.nodeOffset = {x:- 12 - 2, y:15}
     }
 
     isClicked = (position)=>{

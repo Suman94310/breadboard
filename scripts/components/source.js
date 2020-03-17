@@ -5,6 +5,7 @@ export default class Source{
         this.output = this.value;
         this.simulation = simulation;
         this.selected = 0;
+        this.nodeOffset = {x: 25 +10+ 2, y:12}
     }
 
     isClicked = (position)=>{

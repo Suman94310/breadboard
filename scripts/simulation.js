@@ -1,6 +1,7 @@
 import Source from "./components/source.js"
 import Controler from "./controler.js"
 import Led from "./components/led.js";
+import Wire from "./components/wire.js"
 
 export default class simulation {
     constructor(context){
@@ -11,10 +12,11 @@ export default class simulation {
     }
     start = ()=>{
         this.components = [new Source(this, {x:200,y:200}), new Led(this, {x:400,y:200})];
+        this.wires =[]
         this.controler = new Controler(this)
     }
     
-    draw = (context)=>{
+    draw = ()=>{
         for(let i=0; i<this.components.length; i++){
             this.components[i].draw()
         }
@@ -27,6 +29,7 @@ export default class simulation {
                                         position: this.components[i].isClicked(position).position,
                                         icX: this.components[i].isClicked(position).x,
                                         icY: this.components[i].isClicked(position).y}
+                console.log(this.selectedElement)
                 if(this.components[i].isClicked(position).position=="node"){
                     this.mouseDownElement = {id:i,
                                             position: this.components[i].position}
@@ -52,13 +55,34 @@ export default class simulation {
         }
         if(this.mouseDownElement.id !== this.mouseUpElement.id){
             this.components[this.mouseUpElement.id].input = this.components[this.mouseDownElement.id]
+            console.table(this.wires)
+            let tempWire = new Wire(this, this.components[this.mouseDownElement.id],
+                                    this.components[this.mouseUpElement.id], 
+                                    this.mouseDownElement.id, 
+                                    this.mouseUpElement.id)
+            console.log(tempWire)
+            let wireNeeded = 1
+            for(let i=0; i<this.wires.length; i++){
+                if(this.wires[i].lId === tempWire.lId && this.wires[i].rId === tempWire.rId){
+                    wireNeeded = 0
+                    break
+                }
+            }
+            if(wireNeeded){
+                this.wires.push(tempWire)
+            }
         }
     }
 
-    update = (context)=>{
+    update = ()=>{
         for(let i=0; i<this.components.length; i++){
             this.components[i].update()
         }
+
+        for(let i=0; i<this.wires.length; i++){
+            this.wires[i].update()
+        }
+
         this.controler.update()
     }
 }
