@@ -7,6 +7,7 @@ export default class simulation {
     constructor(context){
         this.context = context
         this.selectedElement = undefined;
+        this.selectedWire = undefined;
         this.mouseUpElement = undefined;
         this.mouseDownElement = undefined;
     }
@@ -29,7 +30,6 @@ export default class simulation {
                                         position: this.components[i].isClicked(position).position,
                                         icX: this.components[i].isClicked(position).x,
                                         icY: this.components[i].isClicked(position).y}
-                console.log(this.selectedElement)
                 if(this.components[i].isClicked(position).position=="node"){
                     this.mouseDownElement = {id:i,
                                             position: this.components[i].position}
@@ -45,6 +45,22 @@ export default class simulation {
                 this.components[i].selected = 0
             }
         }
+
+        for(let i=0; i<this.wires.length; i++){
+            if(this.wires[i].isClicked(position)){
+                this.selectedWire = {id:i}
+                break
+            }
+            else{
+                this.selectedWire = undefined
+            }
+            console.log(this.selectedWire)
+        }
+        for(let i=0; i<this.wires.length; i++){
+            if(this.selectedWire !=undefined && i != this.selectedWire.id){
+                this.wires[i].selected = 0
+            }
+        }
     }
     
     mouseUpHandler = (position)=>{
@@ -55,12 +71,10 @@ export default class simulation {
         }
         if(this.mouseDownElement.id !== this.mouseUpElement.id){
             this.components[this.mouseUpElement.id].input = this.components[this.mouseDownElement.id]
-            console.table(this.wires)
             let tempWire = new Wire(this, this.components[this.mouseDownElement.id],
                                     this.components[this.mouseUpElement.id], 
                                     this.mouseDownElement.id, 
                                     this.mouseUpElement.id)
-            console.log(tempWire)
             let wireNeeded = 1
             for(let i=0; i<this.wires.length; i++){
                 if(this.wires[i].lId === tempWire.lId && this.wires[i].rId === tempWire.rId){
