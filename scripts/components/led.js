@@ -4,7 +4,7 @@ export default class Led{
         this.value = 1;
         this.simulation = simulation;
         this.selected = 0;
-        this.input = null;
+        this.input = undefined;
         this.nodeOffset = {x:- 12 - 2, y:15}
     }
 
@@ -52,7 +52,7 @@ export default class Led{
         this.simulation.context.stroke();
 
         this.simulation.context.beginPath();
-        if(this.input !== null){
+        if(this.input !== undefined){
             if(this.input.value == 1){
                 this.simulation.context.fillStyle = "yellow"
             }

@@ -1,6 +1,7 @@
 import Source from "./components/source.js"
 import Controler from "./controler.js"
 import Led from "./components/led.js";
+import Pulse from "./components/pulse.js"
 import Wire from "./components/wire.js"
 
 export default class simulation {
@@ -12,7 +13,7 @@ export default class simulation {
         this.mouseDownElement = undefined;
     }
     start = ()=>{
-        this.components = [new Source(this, {x:200,y:200}), new Led(this, {x:400,y:200})];
+        this.components = [new Source(this, {x:200,y:200}), new Led(this, {x:400,y:200}), new Pulse(this,{x:400,y:200})];
         this.wires =[]
         this.controler = new Controler(this)
     }
@@ -54,7 +55,6 @@ export default class simulation {
             else{
                 this.selectedWire = undefined
             }
-            console.log(this.selectedWire)
         }
         for(let i=0; i<this.wires.length; i++){
             if(this.selectedWire !=undefined && i != this.selectedWire.id){
@@ -69,6 +69,7 @@ export default class simulation {
                 this.mouseUpElement = {id:i, position: this.components[i].position}
             }
         }
+
         if(this.mouseDownElement.id !== this.mouseUpElement.id){
             this.components[this.mouseUpElement.id].input = this.components[this.mouseDownElement.id]
             let tempWire = new Wire(this, this.components[this.mouseDownElement.id],
