@@ -2,6 +2,7 @@ import Source from "./components/source.js"
 import Controler from "./controler.js"
 import Led from "./components/led.js";
 import Pulse from "./components/pulse.js"
+import Null from "./components/null.js"
 import Wire from "./components/wire.js"
 
 export default class simulation {
@@ -88,6 +89,8 @@ export default class simulation {
             }
         }
     }
+
+    
 
     update = ()=>{
         for(let i=0; i<this.components.length; i++){

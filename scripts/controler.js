@@ -1,9 +1,22 @@
+import Null from "./components/null.js"
+
 export default class controller{
     constructor(simulation){
         this.mousedown = 0;
         this.simulation = simulation
     }
     
+    delete = ()=>{
+        if(this.simulation.selectedElement != undefined){
+            // delete this.simulation.components[this.simulation.selectedElement.id]
+            // this.simulation.components.splice(this.simulation.selectedElement.id,1)    
+            this.simulation.components[this.simulation.selectedElement.id] = new Null(this.simulation,{x:0,y:0})
+        }
+        console.log(this.simulation)
+        console.log(this.simulation.components[1])
+        // this.simulation.wires.splice(this.simulation.selectedWire.id,1)
+    }
+
     update = ()=>{
         document.onmouseup = (e)=>{
             this.mousedown = 0
@@ -22,6 +35,13 @@ export default class controller{
         document.onmousedown = (e)=>{
             this.mousedown = 1
             this.simulation.mouseDownHandler({x:e.clientX-8, y:e.clientY-8})
+        }
+        document.onkeydown = (e)=>{
+            this.simulation.components[0].value = 0
+            console.log(e.keyCode)
+            if(e.keyCode == 88){
+                this.delete()
+            }
         }
     }
 }
