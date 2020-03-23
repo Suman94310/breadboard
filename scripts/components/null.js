@@ -1,4 +1,4 @@
-export default class Led{
+export default class Null{
     constructor(simulation, position){
         this.position = position;
         this.value = 0;

@@ -36,12 +36,15 @@ export default class simulation {
                     this.mouseDownElement = {id:i,
                                             position: this.components[i].position}
                     }
+                else this.mouseDownElement = undefined 
                 break
             }
             else{
                 this.selectedElement = undefined
+                this.mouseDownElement = undefined 
             } 
         }
+
         for(let i=0; i<this.components.length; i++){
             if(this.selectedElement !=undefined && i != this.selectedElement.id){
                 this.components[i].selected = 0
@@ -68,11 +71,12 @@ export default class simulation {
         for(let i=0; i<this.components.length; i++){
             if(this.components[i].isClicked(position).position == "node"){
                 this.mouseUpElement = {id:i, position: this.components[i].position}
+                break
             }
+            else this.mouseUpElement = undefined
         }
-
         if(this.mouseDownElement.id !== this.mouseUpElement.id){
-            this.components[this.mouseUpElement.id].input = this.components[this.mouseDownElement.id]
+            this.components[this.mouseUpElement.id].inputId = this.mouseDownElement.id
             let tempWire = new Wire(this, this.components[this.mouseDownElement.id],
                                     this.components[this.mouseUpElement.id], 
                                     this.mouseDownElement.id, 
