@@ -43,36 +43,8 @@ export default class Led{
     }
 
     draw = ()=>{
-        if(this.selected){
-            this.simulation.context.strokeStyle = "red"
-        }
-        this.simulation.context.beginPath();
-        this.simulation.context.rect(this.position.x, this.position.y, 30, 30)
-        this.simulation.context.stroke();
-
-        this.simulation.context.beginPath();
-        if(this.input !== null){
-            if(this.input.value == 1){
-                this.simulation.context.fillStyle = "yellow"
-            }
-            else{
-                this.simulation.context.fillStyle = "black"
-            }
-        }
-        this.simulation.context.arc(this.position.x +15, this.position.y + 15, 7, 0, 2 * Math.PI);
-        this.simulation.context.stroke();
-        this.simulation.context.fill();
-        this.simulation.context.fillStyle = "black"
-        
-        this.simulation.context.beginPath();
-        this.simulation.context.moveTo(this.position.x, this.position.y + 15);
-        this.simulation.context.lineTo(this.position.x - 12, this.position.y +15);
-        this.simulation.context.stroke();
-
-        this.simulation.context.beginPath();
-        this.simulation.context.arc(this.position.x - 12 - 2, this.position.y +15, 2, 0, 2 * Math.PI);
-        this.simulation.context.stroke();
-        this.simulation.context.strokeStyle = "#000"
+        let and = document.getElementById("and")
+        this.simulation.context.drawImage(and, this.position.x, this.position.y, 95, 80);
     }
 
     update = ()=>{

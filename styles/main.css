@@ -1,3 +1,10 @@
 #board{
     border: solid black 2px;
 }
+
+#and{
+    color: black;
+    display: hidden;
+    height: 0;
+    width: 0;
+}

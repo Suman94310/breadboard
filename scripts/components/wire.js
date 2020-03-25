@@ -104,9 +104,10 @@ export default class Wire{
         
         let offset = multiplier*(Math.pow(this.left.position.x - this.right.position.x,2) + 
                                 Math.pow(this.left.position.y - this.right.position.y,2))
-
+        this.simulation.context.strokeStyle='black'
         if (this.selected)this.simulation.context.strokeStyle='red';
         
+        this.simulation.context.beginPath();
         this.simulation.context.moveTo(this.left.position.x + this.left.nodeOffset.x, 
                                         this.left.position.y + this.left.nodeOffset.y);
         this.simulation.context.bezierCurveTo(this.left.position.x + this.left.nodeOffset.x + offset, 

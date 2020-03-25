@@ -2,6 +2,7 @@ import Source from "./components/source.js"
 import Controler from "./controler.js"
 import Led from "./components/led.js";
 import Pulse from "./components/pulse.js"
+import And from "./components/and.js"
 import Null from "./components/null.js"
 import Wire from "./components/wire.js"
 
@@ -14,9 +15,10 @@ export default class simulation {
         this.mouseDownElement = undefined;
     }
     start = ()=>{
-        this.components = [new Source(this, {x:200,y:200}), new Led(this, {x:400,y:200}), new Pulse(this,{x:400,y:200})];
+        this.components = [new Source(this, {x:200,y:200}), new Led(this, {x:400,y:200}), new Pulse(this,{x:400,y:200}), new And(this,{x:200,y:200}), new Led(this, {x:200,y:500})];
         this.wires =[]
         this.controler = new Controler(this)
+        this.controler.update()
     }
     
     draw = ()=>{
@@ -65,9 +67,10 @@ export default class simulation {
                 this.wires[i].selected = 0
             }
         }
+        console.log(this.selectedWire)
     }
     
-    mouseUpHandler = (position)=>{
+    mouseUpHandler = (position)=>{this.controler.update()
         for(let i=0; i<this.components.length; i++){
             if(this.components[i].isClicked(position).position == "node"){
                 this.mouseUpElement = {id:i, position: this.components[i].position}
@@ -104,7 +107,5 @@ export default class simulation {
         for(let i=0; i<this.wires.length; i++){
             this.wires[i].update()
         }
-
-        this.controler.update()
     }
 }

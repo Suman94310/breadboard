@@ -41,10 +41,11 @@ export default class controller{
         document.onmousedown = (e)=>{
             this.mousedown = 1
             this.simulation.mouseDownHandler({x:e.clientX-8, y:e.clientY-8})
+            console.log(this.simulation.components)
+            console.log(this.simulation.wires)
         }
         document.onkeydown = (e)=>{
             // this.simulation.components[0].value = 0
-            console.log(e.keyCode)
             if(e.keyCode == 88){
                 this.delete()
             }
