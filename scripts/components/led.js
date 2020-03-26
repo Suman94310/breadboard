@@ -1,7 +1,7 @@
 export default class Led{
     constructor(simulation, position){
         this.position = position;
-        this.value = 1;
+        this.value = 0;
         this.simulation = simulation;
         this.selected = 0;
         this.inputId = undefined;

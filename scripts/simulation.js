@@ -67,7 +67,6 @@ export default class simulation {
                 this.wires[i].selected = 0
             }
         }
-        console.log(this.selectedWire)
     }
     
     mouseUpHandler = (position)=>{this.controler.update()
