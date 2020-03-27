@@ -1,7 +1,7 @@
-export default class Source{
+export default class Ground{
     constructor(simulation, position){
         this.position = position;
-        this.value = 1;
+        this.value = 0;
         this.output = this.value;
         this.simulation = simulation;
         this.selected = 0;

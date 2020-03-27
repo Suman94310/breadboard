@@ -4,8 +4,8 @@ export default class And{
         this.value = 0;
         this.simulation = simulation;
         this.selected = 0;
-        this.inputIds = [undefined,undefined];
-        this.nodeOffsets = [{x: 3, y: 20}, {x: 3, y: 60}, {x: 95 - 3, y: 40}]
+        this.inputIds = [undefined];
+        this.nodeOffsets = [{x: 3, y: 40}, {x: 95 - 3, y: 40}]
     }
 
     isClicked = (position)=>{
@@ -15,23 +15,11 @@ export default class And{
             position.y <= this.position.y + 80)
             {
                 this.select(this.simulation.context)
-                if(position.x < this.position.x +10){
-                    if(position.y > this.position.y+20-5 && position.y < this.position.y+20+5)
-                        return {
-                            position: "node",
-                            nodeId: 1,
-                            x: position.x - this.position.x,
-                            y: position.y - this.position.y
-                        }
-                    else if(position.y > this.position.y+60-5 && position.y < this.position.y+60+5)
-                        return {
-                            position: "node",
-                            nodeId: 2,
-                            x: position.x - this.position.x,
-                            y: position.y - this.position.y
-                        }
+                if(position.x < this.position.x +10 && position.y > this.position.y+40-5 && position.y < this.position.y+40+5){
+                    console.log("blyat")
                     return {
-                        position: "object",
+                        position: "node",
+                        nodeId: 1,
                         x: position.x - this.position.x,
                         y: position.y - this.position.y
                     }
@@ -39,7 +27,7 @@ export default class And{
                 else if(position.x > this.position.x +95-10 && position.y > this.position.y + 40 - 10){
                     return{
                         position: "node",
-                        nodeId: 3,
+                        nodeId:2,
                         x: position.x - this.position.x,
                         y: position.y - this.position.y
                     }
@@ -70,13 +58,13 @@ export default class And{
     }
 
     draw = ()=>{
-        let and = document.getElementById("and")
+        let and = document.getElementById("not")
         this.simulation.context.drawImage(and, this.position.x, this.position.y, 95, 80);
     }
 
     update = ()=>{
-        if(this.inputIds[0]!=undefined && this.inputIds[1]!=undefined)
-            this.value = this.simulation.components[this.inputIds[0]].value && this.simulation.components[this.inputIds[1]].value
+        if(this.inputIds[0]!=undefined )
+            this.value = !this.simulation.components[this.inputIds[0]].value 
         this.draw()
     }
 }

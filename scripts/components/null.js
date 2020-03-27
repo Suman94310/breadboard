@@ -4,8 +4,8 @@ export default class Null{
         this.value = 0;
         this.simulation = simulation;
         this.selected = 0;
-        this.input = undefined;
-        this.nodeOffset = {x:0, y:0}
+        this.input = [undefined];
+        this.nodeOffsets = [{x:0, y:0}]
     }
 
     isClicked = (position)=>{

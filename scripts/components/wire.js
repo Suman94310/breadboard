@@ -2,12 +2,14 @@ import adaptiveBezierCurve from '../adaptive-bezier-curve.js'
 const adaptivePoints = adaptiveBezierCurve()
 
 export default class Wire{
-    constructor(simulation, left, right, lId, rId){
+    constructor(simulation, left, right, lId, rId, lNodeId, rNodeId){
         this.simulation = simulation
         this.left = left
         this.right = right
         this.lId = lId
         this.rId = rId
+        this.rNodeId = rNodeId
+        this.lNodeId = lNodeId
         this.selected = 0
         this.adaptivePts = undefined
     }
@@ -19,18 +21,18 @@ export default class Wire{
         let offset = multiplier*(Math.pow(this.left.position.x - this.right.position.x,2) + 
                                 Math.pow(this.left.position.y - this.right.position.y,2))
 
-        this.adaptivePts = adaptivePoints([this.left.position.x + this.left.nodeOffset.x,
-                                        this.left.position.y + this.left.nodeOffset.y],
-                                        [this.left.position.x + this.left.nodeOffset.x + offset, 
-                                        this.left.position.y + this.left.nodeOffset.y],
-                                        [this.right.position.x + this.right.nodeOffset.x - offset, 
-                                        this.right.position.y + this.right.nodeOffset.y],
-                                        [this.right.position.x + this.right.nodeOffset.x, 
-                                        this.right.position.y + this.right.nodeOffset.y]
+        this.adaptivePts = adaptivePoints([this.left.position.x + this.left.nodeOffsets[this.lNodeId-1].x,
+                                        this.left.position.y + this.left.nodeOffsets[this.lNodeId-1].y],
+                                        [this.left.position.x + this.left.nodeOffsets[this.lNodeId-1].x + offset, 
+                                        this.left.position.y + this.left.nodeOffsets[this.lNodeId-1].y],
+                                        [this.right.position.x + this.right.nodeOffsets[this.rNodeId-1].x - offset, 
+                                        this.right.position.y + this.right.nodeOffsets[this.rNodeId-1].y],
+                                        [this.right.position.x + this.right.nodeOffsets[this.rNodeId-1].x, 
+                                        this.right.position.y + this.right.nodeOffsets[this.rNodeId-1].y]
                                         )
         
         for(let i=0; i<this.adaptivePts.length; i++){
-            if(this.right.position.y + this.right.nodeOffset.y < this.left.position.y + this.left.nodeOffset.y){
+            if(this.right.position.y + this.right.nodeOffsets[this.rNodeId-1].y < this.left.position.y + this.left.nodeOffsets[this.lNodeId-1].y){
                 if(position.y > this.adaptivePts[i][1]){
                     if(i==0){
                         let distance = Math.pow(position.x - this.adaptivePts[i][0],2) +
@@ -108,14 +110,14 @@ export default class Wire{
         if (this.selected)this.simulation.context.strokeStyle='red';
         
         this.simulation.context.beginPath();
-        this.simulation.context.moveTo(this.left.position.x + this.left.nodeOffset.x, 
-                                        this.left.position.y + this.left.nodeOffset.y);
-        this.simulation.context.bezierCurveTo(this.left.position.x + this.left.nodeOffset.x + offset, 
-                                            this.left.position.y + this.left.nodeOffset.y, 
-                                            this.right.position.x + this.right.nodeOffset.x - offset, 
-                                            this.right.position.y + this.right.nodeOffset.y, 
-                                            this.right.position.x + this.right.nodeOffset.x, 
-                                            this.right.position.y + this.right.nodeOffset.y);
+        this.simulation.context.moveTo(this.left.position.x + this.left.nodeOffsets[this.lNodeId-1].x, 
+                                        this.left.position.y + this.left.nodeOffsets[this.lNodeId-1].y);
+        this.simulation.context.bezierCurveTo(this.left.position.x + this.left.nodeOffsets[this.lNodeId-1].x + offset, 
+                                            this.left.position.y + this.left.nodeOffsets[this.lNodeId-1].y, 
+                                            this.right.position.x + this.right.nodeOffsets[this.rNodeId-1].x - offset, 
+                                            this.right.position.y + this.right.nodeOffsets[this.rNodeId-1].y, 
+                                            this.right.position.x + this.right.nodeOffsets[this.rNodeId-1].x, 
+                                            this.right.position.y + this.right.nodeOffsets[this.rNodeId-1].y);
         this.simulation.context.stroke();
         this.simulation.context.strokeStyle='black'
     }

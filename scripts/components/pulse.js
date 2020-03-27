@@ -5,7 +5,7 @@ export default class Pulse{
         this.output = this.value;
         this.simulation = simulation;
         this.selected = 0;
-        this.nodeOffset = {x: 25 +10+ 2, y:12}
+        this.nodeOffsets = [{x: 25 +10+ 2, y:12}]
 
         setInterval(()=>{
             if(this.value){
@@ -26,7 +26,8 @@ export default class Pulse{
             {
                 this.selected = 1
                 if(position.x > this.position.x +25 +10){
-                    return {position:"node", 
+                    return {position:"node",
+                            nodeId:1, 
                             x: position.x - this.position.x,
                             y: position.y - this.position.y};
                 }

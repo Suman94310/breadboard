@@ -4,8 +4,8 @@ export default class Led{
         this.value = 0;
         this.simulation = simulation;
         this.selected = 0;
-        this.inputId = undefined;
-        this.nodeOffset = {x:- 12 - 2, y:15}
+        this.inputIds = [undefined];
+        this.nodeOffsets = [{x:- 12 - 2, y:15}]
     }
 
     isClicked = (position)=>{
@@ -16,7 +16,8 @@ export default class Led{
             {
                 this.select(this.simulation.context)
                 if(position.x < this.position.x -8){
-                    return {position:"node", 
+                    return {position:"node",
+                            nodeId: 1, 
                             x: position.x - this.position.x,
                             y: position.y - this.position.y};
                 }
@@ -52,8 +53,8 @@ export default class Led{
         this.simulation.context.stroke();
 
         this.simulation.context.beginPath();
-        if(this.inputId !== undefined){
-            if(this.simulation.components[this.inputId].value == 1){
+        if(this.inputIds[0] !== undefined){
+            if(this.simulation.components[this.inputIds[0]].value == 1){
                 this.simulation.context.fillStyle = "yellow"
             }
             else{
