@@ -1,4 +1,4 @@
-export default class And{
+export default class Not{
     constructor(simulation, position){
         this.position = position;
         this.value = 0;

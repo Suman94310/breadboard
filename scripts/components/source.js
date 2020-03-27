@@ -12,9 +12,10 @@ export default class Source{
         if(position.x >= this.position.x &&
             position.x <= this.position.x + 25 + 10 + 6 &&
             position.y >= this.position.y &&
-            position.y <= this.position.y + 25)
+            position.y <= this.position.y + 25 +10)
             {
                 this.selected = 1
+                if(position.y > this.position.y + 25) this.value = Math.abs(1-this.value)
                 if(position.x > this.position.x +25 +10){
                     return {position:"node",
                             nodeId:1, 
@@ -54,9 +55,32 @@ export default class Source{
         this.simulation.context.arc(this.position.x +25 +10+ 2, this.position.y + 12, 2, 0, 2 * Math.PI);
         this.simulation.context.stroke();
 
-        this.simulation.context.font = "20px Arial";
+        this.simulation.context.beginPath()
+        this.simulation.context.rect(this.position.x, this.position.y+25, 25, 10)
+        this.simulation.context.stroke()
+
+        this.simulation.context.font =  "20px Arial";
         this.simulation.context.fillText(this.value, this.position.x + 7, this.position.y + 20);
         
+        this.simulation.context.font = "9px Arial"
+        this.simulation.context.fillText("0", this.position.x +25/4 -3 , this.position.y + 33)
+
+        this.simulation.context.font = "9px Arial"
+        this.simulation.context.fillText("1", this.position.x +25/4 +25/2 -3 , this.position.y + 33)
+
+        if(this.value == 1){
+            this.simulation.context.fillStyle = "rgba(0, 0, 0, 0)"
+            this.simulation.context.fillRect(this.position.x, this.position.y +25, 25/2, 10)
+            this.simulation.context.fillStyle = "rgba(0, 0, 0, 1)"
+            this.simulation.context.fillRect(this.position.x +25/2, this.position.y +25, 25/2, 10)
+        }
+        else{
+            this.simulation.context.fillStyle = "rgba(0, 0, 0, 1)"
+            this.simulation.context.fillRect(this.position.x, this.position.y +25, 25/2, 10)
+            this.simulation.context.fillStyle = "rgba(0, 0, 0, 0)"
+            this.simulation.context.fillRect(this.position.x +25/2, this.position.y +25, 25/2, 10)
+        }
+        this.simulation.context.fillStyle = "rgba(0, 0, 0, 1)"
         this.simulation.context.strokeStyle = "#000"
     }
 

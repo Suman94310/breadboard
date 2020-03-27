@@ -4,6 +4,7 @@ import Controler from "./controler.js"
 import Led from "./components/led.js";
 import Pulse from "./components/pulse.js"
 import And from "./components/and.js"
+import And3 from "./components/3and.js" 
 import Not from "./components/not.js"
 import Null from "./components/null.js"
 import Wire from "./components/wire.js"
@@ -17,7 +18,7 @@ export default class simulation {
         this.mouseDownElement = undefined;
     }
     start = ()=>{
-        this.components = [new Source(this, {x:200, y:300}),new Source(this, {x:200, y:300}),new Ground(this,{x:300, y:300}),new Ground(this,{x:300, y:300}), new And(this,{x:400, y:300}),new And(this,{x:400, y:300}), new Not(this,{x:500, y:300}),new Not(this,{x:500, y:300}), new Led(this,{x:600, y:300}), new Led(this,{x:600, y:300})];
+        this.components = [new Source(this, {x:200, y:300}),new Source(this, {x:200, y:300}),new Source(this, {x:200, y:300}),new Ground(this,{x:300, y:300}),new Ground(this,{x:300, y:300}), new And(this,{x:400, y:300}),new And(this,{x:400, y:300}), new Not(this,{x:500, y:300}),new Not(this,{x:500, y:300}), new Led(this,{x:600, y:300}), new Led(this,{x:600, y:300}), new And3(this, {x:700, y:300})];
         this.wires =[]
         this.controler = new Controler(this)
         this.controler.update()
