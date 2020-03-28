@@ -103,9 +103,12 @@ export default class Wire{
 
     draw = ()=>{
         let multiplier = 0.0007
-        
         let offset = multiplier*(Math.pow(this.left.position.x - this.right.position.x,2) + 
                                 Math.pow(this.left.position.y - this.right.position.y,2))
+        // if(this.simulation.components[this.lId].position.x > this.simulation.components[this.lId].position.x)
+        //     offset = 5
+        
+        
         this.simulation.context.strokeStyle='black'
         if (this.selected)this.simulation.context.strokeStyle='red';
         

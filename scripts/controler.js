@@ -45,9 +45,18 @@ export default class controller{
             console.log(this.simulation.wires)
         }
         document.onkeydown = (e)=>{
-            // this.simulation.components[0].value = 0
             if(e.keyCode == 88){
                 this.delete()
+            }
+        }
+
+
+
+        let buttons = document.getElementsByClassName("button")
+        for(let i=0; i<buttons.length; i++){
+            buttons[i].onclick = (e)=>{
+                let newObject = this.simulation.availableComponents[e.target.className[7]]()
+                this.simulation.components.push(newObject)
             }
         }
     }

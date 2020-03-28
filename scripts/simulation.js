@@ -16,9 +16,10 @@ export default class simulation {
         this.selectedWire = undefined;
         this.mouseUpElement = undefined;
         this.mouseDownElement = undefined;
+        this.availableComponents = [()=> {return new Source(this, {x:300,y:300})},()=> {return new And(this, {x:300,y:300})},()=> {return new And3(this, {x:300,y:300})},()=> {return new Not(this, {x:300,y:300})},()=> {return new Led(this, {x:300,y:300})},()=> {return new Pulse(this, {x:300,y:300})}]
     }
     start = ()=>{
-        this.components = [new Source(this, {x:200, y:300}),new Source(this, {x:200, y:300}),new Source(this, {x:200, y:300}),new Ground(this,{x:300, y:300}),new Ground(this,{x:300, y:300}), new And(this,{x:400, y:300}),new And(this,{x:400, y:300}), new Not(this,{x:500, y:300}),new Not(this,{x:500, y:300}), new Led(this,{x:600, y:300}), new Led(this,{x:600, y:300}), new And3(this, {x:700, y:300})];
+        this.components = [];
         this.wires =[]
         this.controler = new Controler(this)
         this.controler.update()
@@ -77,6 +78,7 @@ export default class simulation {
             }
         }
         console.log(position)
+        console.log(this.selectedElement)
     }
     
     mouseUpHandler = (position)=>{this.controler.update()

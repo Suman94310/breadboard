@@ -2,6 +2,40 @@
     border: solid black 2px;
 }
 
+.main{
+    display: grid;
+    grid-template-columns: 35fr 1fr 0fr 0fr 0fr 0fr;
+}
+
+.components{
+    display: grid;
+    gap: 3px;
+    grid-template-rows: repeat(13,1fr);
+}
+
+.components .button{
+    height: 100%;
+    width: 100%;
+}
+
+.button{
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+#and-button{
+    background-image: url("../scripts/components/svg/and.svg");
+}
+
+#and3-button{
+    background-image: url("../scripts/components/svg/3and.svg");
+}
+
+#not-button{
+    background-image: url("../scripts/components/svg/not.svg");
+}
+
 #and{
     color: black;
     display: hidden;

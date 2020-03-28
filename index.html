@@ -8,12 +8,24 @@
     <title>Document</title>
 </head>
 <body>
-    <canvas id="board" height="640" width="735">
-    </canvas>
-    <!-- <div class="components"></div> -->
-    <img src="./scripts/components/svg/and.svg" alt="and gate" id="and">
-    <img src="./scripts/components/svg/not.svg" alt="not gate" id="not">
-    <img src="./scripts/components/svg/3and.svg" alt="and gate" id="and3">
+    <div class="main">
+        <div id="board-container">
+            <canvas id="board" height="640" width="735">
+            </canvas>
+        </div>
+        <div class="components">
+            <div class="button 0">source</div>
+            <div class="button 1" id="and-button"></div>
+            <div class="button 2" id="and3-button"></div>
+            <div class="button 3" id="not-button"></div>
+            <div class="button 4">led</div>
+            <div class="button 5">pulse</div>
+        </div>
+        <img src="./scripts/components/svg/and.svg" alt="and gate" id="and">
+        <img src="./scripts/components/svg/not.svg" alt="not gate" id="not">
+        <img src="./scripts/components/svg/3and.svg" alt="and gate" id="and3">
+    </div>
+    
     <script src="./index.js" type="module"></script>
 </body>
 </html>
