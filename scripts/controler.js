@@ -4,6 +4,7 @@ export default class controller{
     constructor(simulation){
         this.mousedown = 0;
         this.simulation = simulation
+        this.toolBarWidth = document.getElementById("components").offsetWidth
     }
     
     delete = ()=>{
@@ -26,7 +27,7 @@ export default class controller{
     update = ()=>{
         document.onmouseup = (e)=>{
             this.mousedown = 0
-            this.simulation.mouseUpHandler({x:e.clientX-8, y:e.clientY-8})
+            this.simulation.mouseUpHandler({x:e.clientX - this.toolBarWidth, y:e.clientY})
             // add some condition to check and validate which nodes are being connected
             // console.log(this.simulation.mouseUpElement, this.simulation.mouseDownElement)
             // this.simulation.components[this.simulation.mouseUpElement.id].input = this.simulation.components[this.simulation.mouseDownElement.id]
@@ -34,13 +35,13 @@ export default class controller{
         }
         document.onmousemove = (e)=>{
             if(this.mousedown && this.simulation.selectedElement!=undefined && this.simulation.selectedElement.position === "object"){
-                this.simulation.components[this.simulation.selectedElement.id].move({x:e.clientX - this.simulation.selectedElement.icX-7,
-                                                                                    y:e.clientY - this.simulation.selectedElement.icY-7})
+                this.simulation.components[this.simulation.selectedElement.id].move({x:e.clientX - this.simulation.selectedElement.icX - this.toolBarWidth,
+                                                                                    y:e.clientY - this.simulation.selectedElement.icY})
             }
         }
         document.onmousedown = (e)=>{
             this.mousedown = 1
-            this.simulation.mouseDownHandler({x:e.clientX-8, y:e.clientY-8})
+            this.simulation.mouseDownHandler({x:e.clientX - this.toolBarWidth, y:e.clientY})
             console.log(this.simulation.components)
             console.log(this.simulation.wires)
         }

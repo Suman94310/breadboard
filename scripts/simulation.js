@@ -1,9 +1,14 @@
-import Source from "./components/source.js"
+import DigitalSource from "./components/basics/digitalSource.js"
 import Ground from "./components/ground.js"
 import Controler from "./controler.js"
 import Led from "./components/led.js";
 import Pulse from "./components/pulse.js"
-import And from "./components/and.js"
+import And from "./components/logicGates/doubleInput/and.js"
+import Or from "./components/logicGates/doubleInput/or.js"
+import Nand from "./components/logicGates/doubleInput/nand.js"
+import Nor from "./components/logicGates/doubleInput/nor.js"
+import Xor from "./components/logicGates/doubleInput/xor.js"
+import Xnor from "./components/logicGates/doubleInput/xnor.js"
 import And3 from "./components/3and.js" 
 import Not from "./components/not.js"
 import Null from "./components/null.js"
@@ -16,7 +21,7 @@ export default class simulation {
         this.selectedWire = undefined;
         this.mouseUpElement = undefined;
         this.mouseDownElement = undefined;
-        this.availableComponents = [()=> {return new Source(this, {x:300,y:300})},()=> {return new And(this, {x:300,y:300})},()=> {return new And3(this, {x:300,y:300})},()=> {return new Not(this, {x:300,y:300})},()=> {return new Led(this, {x:300,y:300})},()=> {return new Pulse(this, {x:300,y:300})}]
+        this.availableComponents = [()=> {return new DigitalSource(this, {x:300,y:300})},()=> {return new Xnor(this, {x:300,y:300})},()=> {return new And3(this, {x:300,y:300})},()=> {return new Not(this, {x:300,y:300})},()=> {return new Led(this, {x:300,y:300})},()=> {return new Pulse(this, {x:300,y:300})}]
     }
     start = ()=>{
         this.components = [];
@@ -119,12 +124,12 @@ export default class simulation {
     
 
     update = ()=>{
-        for(let i=0; i<this.components.length; i++){
-            this.components[i].update()
-        }
-
         for(let i=0; i<this.wires.length; i++){
             this.wires[i].update()
+        }
+
+        for(let i=0; i<this.components.length; i++){
+            this.components[i].update()
         }
     }
 }

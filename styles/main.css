@@ -1,19 +1,25 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
 #board{
-    border: solid black 2px;
+    
 }
 
 .main{
     display: grid;
-    grid-template-columns: 35fr 1fr 0fr 0fr 0fr 0fr;
+    grid-template-columns: 1fr 25fr 0fr 0fr 0fr 0fr;
 }
 
-.components{
+#components{
     display: grid;
     gap: 3px;
     grid-template-rows: repeat(13,1fr);
+    background-color: #484848;
 }
 
-.components .button{
+#components .button{
     height: 100%;
     width: 100%;
 }
@@ -21,35 +27,26 @@
 .button{
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  background-size: cover;
+  background-size: 70%;
 }
 
 #and-button{
-    background-image: url("../scripts/components/svg/and.svg");
+    background-image: url("./icons/source.svg");
 }
 
 #and3-button{
-    background-image: url("../scripts/components/svg/3and.svg");
+    background-image: url("./icons/jk.svg");
 }
 
 #not-button{
-    background-image: url("../scripts/components/svg/not.svg");
+    background-image: url("./icons/not.svg");
 }
 
-#and{
-    color: black;
-    display: hidden;
-    height: 0;
-    width: 0;
+#led-button{
+    background-image: url("./icons/led.svg");
 }
 
-#not{
-    display: hidden;
-    height: 0;
-    width: 0;
-}
-
-#and3{
+.hide{
     display: hidden;
     height: 0;
     width: 0;
