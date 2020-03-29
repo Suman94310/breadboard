@@ -9,6 +9,13 @@ import Nand from "./components/logicGates/doubleInput/nand.js"
 import Nor from "./components/logicGates/doubleInput/nor.js"
 import Xor from "./components/logicGates/doubleInput/xor.js"
 import Xnor from "./components/logicGates/doubleInput/xnor.js"
+import And_3 from "./components/logicGates/tripleInput/and_3.js"
+import Or_3 from "./components/logicGates/tripleInput/or_3.js"
+import Nand_3 from "./components/logicGates/tripleInput/nand_3.js"
+import Xor_3 from "./components/logicGates/tripleInput/xor_3.js"
+import Nor_3 from "./components/logicGates/tripleInput/nor_3.js"
+import Xnor_3 from "./components/logicGates/tripleInput/xnor_3.js"
+import Jk from "./components/logicGates/tripleInput/jk.js"
 import And3 from "./components/3and.js" 
 import Not from "./components/not.js"
 import Null from "./components/null.js"
@@ -21,7 +28,7 @@ export default class simulation {
         this.selectedWire = undefined;
         this.mouseUpElement = undefined;
         this.mouseDownElement = undefined;
-        this.availableComponents = [()=> {return new DigitalSource(this, {x:300,y:300})},()=> {return new Xnor(this, {x:300,y:300})},()=> {return new And3(this, {x:300,y:300})},()=> {return new Not(this, {x:300,y:300})},()=> {return new Led(this, {x:300,y:300})},()=> {return new Pulse(this, {x:300,y:300})}]
+        this.availableComponents = [()=> {return new DigitalSource(this, {x:300,y:300})},()=> {return new Jk(this, {x:300,y:300})},()=> {return new Pulse(this, {x:300,y:300})},()=> {return new Not(this, {x:300,y:300})},()=> {return new Led(this, {x:300,y:300})},()=> {return new Pulse(this, {x:300,y:300})}]
     }
     start = ()=>{
         this.components = [];

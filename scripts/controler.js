@@ -18,7 +18,7 @@ export default class controller{
             this.simulation.components[this.simulation.selectedElement.id] = new Null(this.simulation,{x:0,y:0})
         }
         else if(this.simulation.selectedWire != undefined){
-            this.simulation.components[this.simulation.wires[this.simulation.selectedWire.id].rId].inputId = undefined
+            this.simulation.components[this.simulation.wires[this.simulation.selectedWire.id].rId].inputIds[this.simulation.selectedWire.rNodeId] = undefined
             this.simulation.wires[this.simulation.selectedWire.id] = new Null(this.simulation,{x:0,y:0})
         }
         
