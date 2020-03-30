@@ -1,10 +1,10 @@
 export default class DigitalSource{
     constructor(simulation, position){
         this.position = position;
-        this.value = 1;
-        this.output = this.value;
+        this.outputs = [1]
         this.simulation = simulation;
         this.selected = 0;
+        this.outputNodeStart = 0
         this.nodeOffsets = [{x:40+7, y:20}]
     }
 
@@ -15,7 +15,7 @@ export default class DigitalSource{
             position.y <= this.position.y + 40 )
             {
                 this.selected = 1
-                if(position.y > this.position.y + 11 && position.y < this.position.y + 29 && position.x > this.position.x +10 && position.x <this.position.x +25) this.value = Math.abs(1-this.value)
+                if(position.y > this.position.y + 11 && position.y < this.position.y + 29 && position.x > this.position.x +10 && position.x <this.position.x +25) this.outputs[0] = Math.abs(1-this.outputs[0])
                 if(position.x > this.position.x + 40 - 3){
                     return {position:"node",
                             nodeId:1, 
@@ -50,10 +50,9 @@ export default class DigitalSource{
         else{
             digitalSource = document.getElementById("digitalSource1")
         }
-        // console.log(digitalSource.style.filter)
         this.simulation.context.drawImage(digitalSource, this.position.x, this.position.y, 49, 40);
 
-        if(this.value == 1){
+        if(this.outputs[0] == 1){
             this.simulation.context.fillStyle = "#ffff82"
             this.simulation.context.fillRect(this.position.x+10, this.position.y+11, 15, 18)
         }

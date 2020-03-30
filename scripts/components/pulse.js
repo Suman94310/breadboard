@@ -1,18 +1,21 @@
 export default class Pulse{
     constructor(simulation, position){
         this.position = position;
-        this.value = 1;
-        this.output = this.value;
+        // this.value = 1;
+        // this.output = this.value;
         this.simulation = simulation;
-        this.selected = 0;
+        this.outputs = [0]
+        this.inputNodes = [undefined]
+        this.inputIds = [undefined];
+        this.outputNodeStart = 0
         this.nodeOffsets = [{x: 25 +10+ 2, y:12}]
 
         setInterval(()=>{
-            if(this.value){
-                this.value = 0
+            if(this.outputs[0]){
+                this.outputs[0] = 0
             }
             else{
-                this.value = 1
+                this.outputs[0] = 1
             }
         },2000)
     }
@@ -65,7 +68,7 @@ export default class Pulse{
         this.simulation.context.stroke();
 
         this.simulation.context.font = "20px Arial";
-        this.simulation.context.fillText(this.value, this.position.x + 7, this.position.y + 20);
+        this.simulation.context.fillText(this.outputs[0], this.position.x + 7, this.position.y + 20);
         
         this.simulation.context.strokeStyle = "#000"
     }

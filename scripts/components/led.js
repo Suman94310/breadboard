@@ -4,7 +4,9 @@ export default class Led{
         this.value = 0;
         this.simulation = simulation;
         this.selected = 0;
-        this.inputIds = [undefined];
+        this.inputNodes = [undefined]
+        this.inputIds = [undefined,undefined];
+        this.outputNodeStart = 2
         this.nodeOffsets = [{x:- 12 - 2, y:15}]
     }
 
@@ -54,7 +56,7 @@ export default class Led{
 
         this.simulation.context.beginPath();
         if(this.inputIds[0] !== undefined){
-            if(this.simulation.components[this.inputIds[0]].value == 1){
+            if(this.simulation.components[this.inputIds[0]].outputs[this.inputNodes[0]] == 1){
                 this.simulation.context.fillStyle = "yellow"
             }
             else{

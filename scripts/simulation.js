@@ -57,7 +57,8 @@ export default class simulation {
                         this.mouseDownElement = {
                             id:i,
                             nodeId:this.components[i].isClicked(position).nodeId,
-                            position: this.components[i].position
+                            position: this.components[i].position,
+                            outputNodeStart: this.components[i].outputNodeStart
                         }
                     }
                 else this.mouseDownElement = undefined 
@@ -99,22 +100,25 @@ export default class simulation {
                 this.mouseUpElement = {
                     id:i, 
                     position: this.components[i].position,
-                    nodeId: this.components[i].isClicked(position).nodeId
+                    nodeId: this.components[i].isClicked(position).nodeId,
+                    outputNodeStart: this.components[i].outputNodeStart
                 }
                 break
             }
             else this.mouseUpElement = undefined
         }
         console.log(this.mouseDownElement, this.mouseUpElement)
-        if(this.mouseDownElement !=undefined && this.mouseDownElement.id !== this.mouseUpElement.id){
+        
+        if(this.mouseDownElement != undefined && this.mouseDownElement.nodeId -1 >= this.mouseDownElement.outputNodeStart && this.mouseUpElement.nodeId -1 < this.mouseUpElement.outputNodeStart){
+            this.components[this.mouseUpElement.id].inputNodes[this.mouseUpElement.nodeId -1] = this.mouseDownElement.nodeId -1 - this.mouseDownElement.outputNodeStart
             this.components[this.mouseUpElement.id].inputIds[this.mouseUpElement.nodeId-1] = this.mouseDownElement.id
             let tempWire = new Wire(this, this.components[this.mouseDownElement.id],
-                                    this.components[this.mouseUpElement.id], 
-                                    this.mouseDownElement.id, 
-                                    this.mouseUpElement.id,
-                                    this.mouseDownElement.nodeId,
-                                    this.mouseUpElement.nodeId
-                                    )
+                this.components[this.mouseUpElement.id], 
+                this.mouseDownElement.id, 
+                this.mouseUpElement.id,
+                this.mouseDownElement.nodeId,
+                this.mouseUpElement.nodeId
+            )
             let wireNeeded = 1
             for(let i=0; i<this.wires.length; i++){
                 if(this.wires[i].lId === tempWire.lId && this.wires[i].rId === tempWire.rId){
@@ -126,6 +130,26 @@ export default class simulation {
                 this.wires.push(tempWire)
             }
         }
+        // if(this.mouseDownElement !=undefined && this.mouseDownElement.id !== this.mouseUpElement.id){
+        //     this.components[this.mouseUpElement.id].inputIds[this.mouseUpElement.nodeId-1] = this.mouseDownElement.id
+        //     let tempWire = new Wire(this, this.components[this.mouseDownElement.id],
+        //                             this.components[this.mouseUpElement.id], 
+        //                             this.mouseDownElement.id, 
+        //                             this.mouseUpElement.id,
+        //                             this.mouseDownElement.nodeId,
+        //                             this.mouseUpElement.nodeId
+        //                             )
+        //     let wireNeeded = 1
+        //     for(let i=0; i<this.wires.length; i++){
+        //         if(this.wires[i].lId === tempWire.lId && this.wires[i].rId === tempWire.rId){
+        //             wireNeeded = 0
+        //             break
+        //         }
+        //     }
+        //     if(wireNeeded){
+        //         this.wires.push(tempWire)
+        //     }
+        // }
     }
 
     

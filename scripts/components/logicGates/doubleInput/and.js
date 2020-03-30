@@ -1,10 +1,13 @@
 export default class And{
     constructor(simulation, position){
         this.position = position;
-        this.value = 0;
+        // this.value = 0;
         this.simulation = simulation;
         this.selected = 0;
+        this.outputs = [0]
+        this.inputNodes = [undefined,undefined]
         this.inputIds = [undefined,undefined];
+        this.outputNodeStart = 2
         this.nodeOffsets = [{x: 0, y: 75/4}, {x: 0, y: 75/4*3}, {x: 95 -2, y: 75/2 }]
     }
 
@@ -82,7 +85,7 @@ export default class And{
 
     update = ()=>{
         if(this.inputIds[0]!=undefined && this.inputIds[1]!=undefined)
-            this.value = this.simulation.components[this.inputIds[0]].value && this.simulation.components[this.inputIds[1]].value
+            this.outputs[0] = this.simulation.components[this.inputIds[0]].outputs[this.inputNodes[0]] && this.simulation.components[this.inputIds[1]].outputs[this.inputNodes[1]]
         this.draw()
     }
 }

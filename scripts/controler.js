@@ -12,10 +12,12 @@ export default class controller{
             for(let i=0; i<this.simulation.wires.length; i++){
                 if(this.simulation.wires[i].lId == this.simulation.selectedElement.id ||
                     this.simulation.wires[i].rId == this.simulation.selectedElement.id){
+                        // this.simulation.wires.
                         this.simulation.wires[i] = new Null(this.simulation,{x:0,y:0})
                     }
             }
             this.simulation.components[this.simulation.selectedElement.id] = new Null(this.simulation,{x:0,y:0})
+            // for(let i=0; i<this.simulation.)
         }
         else if(this.simulation.selectedWire != undefined){
             this.simulation.components[this.simulation.wires[this.simulation.selectedWire.id].rId].inputIds[this.simulation.selectedWire.rNodeId] = undefined
