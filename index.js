@@ -5,7 +5,7 @@ window.onload = ()=>{
     let board = document.getElementById("board");
     let boardContainer = document.getElementById("board-container")
     board.width = boardContainer.offsetWidth
-    board.height = boardContainer.offsetHeight + 20
+    board.height = window.innerHeight-4//boardContainer.offsetHeight
     let context = board.getContext('2d');
 
     let simulation = new Simulation(context)
