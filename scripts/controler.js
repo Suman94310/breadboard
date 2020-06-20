@@ -20,7 +20,13 @@ export default class controller{
             // for(let i=0; i<this.simulation.)
         }
         else if(this.simulation.selectedWire != undefined){
-            this.simulation.components[this.simulation.wires[this.simulation.selectedWire.id].rId].inputIds[this.simulation.selectedWire.rNodeId] = undefined
+            // this.simulation.components[this.simulation.wires[this.simulation.selectedWire.id].rId].inputIds[this.simulation.wires[this.simulation.selectedWire.id].rNodeId] = undefined
+            for(let i=0; i<this.simulation.components[this.simulation.wires[this.simulation.selectedWire.id].rId].inputIds.length; i++){
+                if(this.simulation.components[this.simulation.wires[this.simulation.selectedWire.id].rId].inputIds[i]==this.simulation.wires[this.simulation.selectedWire.id].lId){
+                    this.simulation.components[this.simulation.wires[this.simulation.selectedWire.id].rId].inputIds[i] = undefined
+                }
+            }
+            
             this.simulation.wires[this.simulation.selectedWire.id] = new Null(this.simulation,{x:0,y:0})
         }
         
