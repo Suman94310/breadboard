@@ -1,7 +1,7 @@
 import DigitalSource from "./components/basics/digitalSource.js"
 import Ground from "./components/ground.js"
 import Controler from "./controler.js"
-import Led from "./components/led.js";
+import DigitalInput from "./components/basics/digitalInput.js";
 import Pulse from "./components/pulse.js"
 import And from "./components/logicGates/doubleInput/and.js"
 import Or from "./components/logicGates/doubleInput/or.js"
@@ -49,7 +49,7 @@ export default class simulation {
             ()=> {return new Nand_3(this,{x:300,y:300})},
             ()=> {return new Jk(this,{x:300,y:300})},
             Null,
-            ()=> {return new Led(this,{x:300,y:300})},
+            ()=> {return new DigitalInput(this,{x:300,y:300})},
 
         ]
     }

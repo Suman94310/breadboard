@@ -9,6 +9,7 @@ body{
 
 .main{
     display: flex;
+    padding: 0 !important;
     /* display: grid;
     grid-template-columns: 1fr 25fr 0fr 0fr 0fr 0fr; */
 }
