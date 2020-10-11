@@ -5,25 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./styles/main.css">
-    <title>Document</title>
+    <title>Breadboard</title>
 </head>
 <body>
     <div class="main">
-        <div id="components">
+        <div class="sidenav" id="sidenav">
+            
+            <button class="dropdown-btn">Sources
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-container">
+              <a href="#" class="button 0">Digital</a>
+              <a href="#" class="button 1">Clock</a>
+            </div>
+            <button class="dropdown-btn">Multiplexers
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-container">
+              <a href="#" class="button 2">2 input</a>
+              <a href="#" class="button 3">4 input</a>
+            </div>
+            <button class="dropdown-btn">Logic gates
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-container">
+              <a href="#" class="button 4">2 input And</a>
+              <a href="#" class="button 5">3 input And</a>
+              <a href="#" class="button 6">2 input OR</a>
+              <a href="#" class="button 7">3 input OR</a>
+              <a href="#" class="button 8">2 input XOR</a>
+              <a href="#" class="button 9">3 input XOR</a>
+              <a href="#" class="button 10">2 input XNOR</a>
+              <a href="#" class="button 11">3 input XNOR</a>
+              <a href="#" class="button 12">2 input NOR</a>
+              <a href="#" class="button 13">3 input NOR</a>
+              <a href="#" class="button 14">2 input NAND</a>
+              <a href="#" class="button 15">3 input NAND</a>
+            </div>
+            <button class="dropdown-btn">Flip-Flops
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-container">
+              <a href="#" class="button 16">JK</a>
+              <a href="#" class="button 17">D</a>
+            </div>
+            <button class="dropdown-btn">Outputs
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-container">
+              <a href="#" class="button 18">Digital</a>
+              <a href="#" class="button 19">Seven segment</a>
+            </div>
+          </div> 
+        <!-- <div id="components">
             <div class="button 0">source</div>
             <div class="button 1" id="and-button"></div>
             <div class="button 2" id="and3-button"></div>
             <div class="button 3" id="not-button"></div>
             <div class="button 4" id="led-button"></div>
             <div class="button 5">pulse</div>
-        </div>
+        </div> -->
         <div id="board-container">
-            <canvas id="board" height="640" width="735">
+            <canvas id="board">
             </canvas>
         </div>
         <img src="./scripts/components/svg/and.svg" alt="and gate" id="and" class="hide">
         <img src="./scripts/components/svg/not.svg" alt="not gate" id="not" class="hide">
-        <img src="./scripts/components/svg/3and.svg" alt="and gate" id="and3" class="hide">
         <img src="./scripts/components/svg/digitalSource.svg" alt="Digital source" id="digitalSource" class="hide">
         <img src="./scripts/components/svg/digitalSource1.svg" alt="Digital source" id="digitalSource1" class="hide">
         <img src="./scripts/components/svg/and.svg" alt="And gate" id="and" class="hide">

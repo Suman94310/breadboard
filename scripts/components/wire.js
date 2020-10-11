@@ -108,7 +108,7 @@ export default class Wire{
         // if(this.simulation.components[this.lId].position.x > this.simulation.components[this.lId].position.x)
         //     offset = 5
         
-        
+        this.simulation.context.lineWidth = 2
         this.simulation.context.strokeStyle='black'
         if (this.selected)this.simulation.context.strokeStyle='red';
         
@@ -123,6 +123,7 @@ export default class Wire{
                                             this.right.position.y + this.right.nodeOffsets[this.rNodeId-1].y);
         this.simulation.context.stroke();
         this.simulation.context.strokeStyle='black'
+        this.simulation.context.lineWidth = 1;
     }
 
     update = ()=>{

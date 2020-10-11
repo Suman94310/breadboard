@@ -30,7 +30,28 @@ export default class simulation {
         this.selectedWire = undefined;
         this.mouseUpElement = undefined;
         this.mouseDownElement = undefined;
-        this.availableComponents = [()=> {return new DigitalSource(this, {x:300,y:300})},()=> {return new Mux_4_2(this, {x:300,y:300})},()=> {return new Pulse(this, {x:300,y:300})},()=> {return new Not(this, {x:300,y:300})},()=> {return new Led(this, {x:300,y:300})},()=> {return new Pulse(this, {x:300,y:300})}]
+        this.availableComponents = [
+            ()=> {return new DigitalSource(this, {x:300,y:300})},
+            ()=> {return new Pulse(this,{x:300,y:300})},
+            ()=> {return new Mux_2_1(this,{x:300,y:300})},
+            ()=> {return new Mux_4_2(this,{x:300,y:300})},
+            ()=> {return new And(this,{x:300,y:300})},
+            ()=> {return new And_3(this,{x:300,y:300})},
+            ()=> {return new Or(this,{x:300,y:300})},
+            ()=> {return new Or_3(this,{x:300,y:300})},
+            ()=> {return new Xor(this,{x:300,y:300})},
+            ()=> {return new Xor_3(this,{x:300,y:300})},
+            ()=> {return new Xnor(this,{x:300,y:300})},
+            ()=> {return new Xnor_3(this,{x:300,y:300})},
+            ()=> {return new Nor(this,{x:300,y:300})},
+            ()=> {return new Nor_3(this,{x:300,y:300})},
+            ()=> {return new Nand(this,{x:300,y:300})},
+            ()=> {return new Nand_3(this,{x:300,y:300})},
+            ()=> {return new Jk(this,{x:300,y:300})},
+            Null,
+            ()=> {return new Led(this,{x:300,y:300})},
+
+        ]
     }
     start = ()=>{
         this.components = [];

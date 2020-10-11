@@ -4,7 +4,7 @@ export default class controller{
     constructor(simulation){
         this.mousedown = 0;
         this.simulation = simulation
-        this.toolBarWidth = document.getElementById("components").offsetWidth
+        this.toolBarWidth = document.getElementById("sidenav").offsetWidth
     }
     
     delete = ()=>{
@@ -64,7 +64,7 @@ export default class controller{
         let buttons = document.getElementsByClassName("button")
         for(let i=0; i<buttons.length; i++){
             buttons[i].onclick = (e)=>{
-                let newObject = this.simulation.availableComponents[e.target.className[7]]()
+                let newObject = this.simulation.availableComponents[(e.target.className.length>8)?e.target.className[7]+e.target.className[8]:e.target.className[7]]()
                 this.simulation.components.push(newObject)
             }
         }

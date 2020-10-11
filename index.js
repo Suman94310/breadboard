@@ -2,10 +2,29 @@ import Simulation from "./scripts/simulation.js"
 
 
 window.onload = ()=>{
+
+    // dropdown start
+    let dropdown = document.getElementsByClassName("dropdown-btn");
+    let i;
+
+    for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+        } else {
+        dropdownContent.style.display = "block";
+        }
+    });
+    } 
+    // dropdown end
+
     let board = document.getElementById("board");
     let boardContainer = document.getElementById("board-container")
+    boardContainer.style.width = window.innerWidth+"px"
     board.width = boardContainer.offsetWidth
-    board.height = window.innerHeight-4//boardContainer.offsetHeight
+    board.height = window.innerHeight-10//boardContainer.offsetHeight
     let context = board.getContext('2d');
 
     let simulation = new Simulation(context)
