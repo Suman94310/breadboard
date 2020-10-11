@@ -130,21 +130,41 @@ export default class simulation {
             }
             else this.mouseUpElement = undefined
         }
-        console.log(this.mouseDownElement, this.mouseUpElement)
+        console.log(this.mouseDownElement, this.mouseUpElement,this.wires)
         
-        if(this.mouseDownElement != undefined && this.mouseDownElement.nodeId -1 >= this.mouseDownElement.outputNodeStart && this.mouseUpElement.nodeId -1 < this.mouseUpElement.outputNodeStart){
-            this.components[this.mouseUpElement.id].inputNodes[this.mouseUpElement.nodeId -1] = this.mouseDownElement.nodeId -1 - this.mouseDownElement.outputNodeStart
-            this.components[this.mouseUpElement.id].inputIds[this.mouseUpElement.nodeId-1] = this.mouseDownElement.id
-            let tempWire = new Wire(this, this.components[this.mouseDownElement.id],
-                this.components[this.mouseUpElement.id], 
-                this.mouseDownElement.id, 
-                this.mouseUpElement.id,
-                this.mouseDownElement.nodeId,
-                this.mouseUpElement.nodeId
-            )
+        if(this.mouseDownElement != undefined){
+            let tempWire = undefined
+            if (this.mouseDownElement.nodeId -1 >= this.mouseDownElement.outputNodeStart && this.mouseUpElement.nodeId -1 < this.mouseUpElement.outputNodeStart){
+                this.components[this.mouseUpElement.id].inputNodes[this.mouseUpElement.nodeId -1] = this.mouseDownElement.nodeId -1 - this.mouseDownElement.outputNodeStart
+                this.components[this.mouseUpElement.id].inputIds[this.mouseUpElement.nodeId-1] = this.mouseDownElement.id
+                tempWire = new Wire(this, this.components[this.mouseDownElement.id],
+                    this.components[this.mouseUpElement.id], 
+                    this.mouseDownElement.id, 
+                    this.mouseUpElement.id,
+                    this.mouseDownElement.nodeId,
+                    this.mouseUpElement.nodeId
+                )
+            }
+            else{
+                this.components[this.mouseDownElement.id].inputNodes[this.mouseDownElement.nodeId -1] = this.mouseUpElement.nodeId -1 - this.mouseUpElement.outputNodeStart
+                this.components[this.mouseDownElement.id].inputIds[this.mouseDownElement.nodeId-1] = this.mouseUpElement.id
+                tempWire = new Wire(this, 
+                    this.components[this.mouseUpElement.id], 
+                    this.components[this.mouseDownElement.id],
+                    this.mouseUpElement.id,
+                    this.mouseDownElement.id, 
+                    this.mouseUpElement.nodeId,
+                    this.mouseDownElement.nodeId
+                )
+            }
+                
+            
+            
             let wireNeeded = 1
             for(let i=0; i<this.wires.length; i++){
-                if(this.wires[i].lId === tempWire.lId && this.wires[i].rId === tempWire.rId){
+                // console.log(this.wires[i].lId , tempWire.lId , this.wires[i].rId , tempWire.rId , this.wire[i].rNodeId , tempWire.rNodeId , this.wire[i].lNodeId , tempWire.lNodeId)
+                // console.log(tempWire)
+                if(this.wires[i].lId === tempWire.lId && this.wires[i].rId === tempWire.rId && this.wires[i].rNodeId === tempWire.rNodeId && this.wires[i].lNodeId === tempWire.lNodeId){
                     wireNeeded = 0
                     break
                 }
