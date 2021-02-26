@@ -56,6 +56,7 @@
               <a href="#" class="button 18">Digital</a>
               <a href="#" class="button 19">Seven segment</a>
             </div>
+            <button id="instructions">INSTRUCTIONS</button>
           </div> 
         <!-- <div id="components">
             <div class="button 0">source</div>
@@ -108,5 +109,13 @@
     </div>
     
     <script src="./index.js" type="module"></script>
+    <script>
+      let instructions = document.getElementById("instructions")
+      instructions.onclick = ()=>{
+        alert(
+          "1. Create an element by selecting it from dropdown \n2. Create connection by draging and dropping between connection points connection point looks like '-○' \n3. Delete connection or element by clicking it and then pressing \"X\""
+        )
+      }
+    </script>
 </body>
 </html>
